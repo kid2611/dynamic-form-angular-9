@@ -1,0 +1,37 @@
+<div class="content">
+    <form [formGroup]="formMaterial">
+        <div class="group-gap">
+            <div class="d-block my-3">
+                <div class="mb-3">
+                    <select class="custom-select" (change)="chageProd($event)" formControlName="product">
+                        <option value="">Chọn sản phẩm</option>
+                        <option *ngFor="let m of prodList" [value]="m.No">{{m.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select class="custom-select" formControlName="material" (change)="changeMaterial($event)">
+                        <option value="">Chọn vật liệu</option>
+                        <option *ngFor="let mDetail of materialList" [value]="mDetail.id" >{{mDetail.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select class="custom-select" formControlName="materType" (change)="changeType($event)">
+                        <option value="">Chọn kiểu</option>
+                        <option *ngFor="let type of typelList" [value]="type.id">{{type.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>Đơn giá: </label>
+                    <input type="text" formControlName="price" [attr.disable]="true">
+                </div>
+                <div class="mb-3">
+                    <input type="text" formControlName="quantity" (focusout)="calulatePrice()">
+                </div>
+                <div class="mb-3">
+                    <label>Đơn giá: </label>
+                    <input type="text" formControlName="total" [attr.disable]="true">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

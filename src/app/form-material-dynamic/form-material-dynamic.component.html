@@ -1,0 +1,65 @@
+<button (click)="addItem()">Thêm</button>
+<div [formGroup]="materialForm">
+  <div formArrayName="items"
+    *ngFor="let item of materialFormControls.items?.value; let i = index;">
+    <ng-container [formGroupName]="i">
+        <div class="d-block my-3">
+          <div class="mb-3">
+            <label class="label">Sản phẩm: </label>
+              <select class="custom-select" (change)="chageProd($event,i)" formControlName="product">
+                  <option value="">Chọn sản phẩm</option>
+                  <option *ngFor="let m of prodList" [value]="m.No">{{m.name}}</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label  class="label">Vật liệu: </label>
+              <select class="custom-select" formControlName="material" (change)="changeMaterial($event,i)">
+                  <option value="">Chọn vật liệu</option>
+                  <option *ngFor="let mDetail of materialList[i]" [value]="mDetail.id" >{{mDetail.name}}</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label  class="label">Kiểu: </label>
+              <select class="custom-select" formControlName="materType" (change)="changeType($event,i)">
+                  <option value="">Chọn kiểu</option>
+                  <option *ngFor="let type of typelList[i]" [value]="type.id">{{type.name}}</option>
+              </select>
+          </div>
+          <div class="mb-3">
+              <label  class="label">Đơn giá: </label>
+              <input type="text" formControlName="price" [attr.disable]="true">
+          </div>
+          <div class="mb-3">
+              <label  class="label">Số lượng: </label>
+              <input type="text" formControlName="quantity" (blur)="amountItem($event,i)">
+          </div>
+          <div class="mb-3">
+              <label class="label">Thành tiền: </label>
+              <input type="text" formControlName="total" [attr.disable]="true">
+          </div>
+          <!-- <div class="mb-3">
+            <label class="label"></label>
+            <button class="btn"><i class="fa fa-trash" (click)="del(i)"></i></button>
+          </div> -->
+        </div>
+
+        <div class="clear"></div>
+      </ng-container>
+
+    <!-- <input formControlName="name" placeholder="Item name">
+        <input formControlName="description" placeholder="Item description">
+        <input formControlName="price" placeholder="Item price"> -->
+
+    <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
+  </div>
+  <!-- <div class="total-items">
+    <label class="label">
+      Tổng báo giá hiện tại:
+    </label>
+    <input type="text" formControlName="totalItems" [attr.disable]="true">
+  </div> -->
+</div>
+
+<!-- <div>
+  <app-form-material></app-form-material>
+</div> -->
