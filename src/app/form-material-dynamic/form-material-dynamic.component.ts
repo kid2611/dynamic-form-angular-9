@@ -15,29 +15,78 @@ export class FormMaterialDynamicComponent implements OnInit {
   items: FormArray;
 
   prodList: any = [
-    { No:'1',name:"Tủ quần áo", material:[
-     {  id:"1",
-        name:"MDF THƯỜNG", 
-        type:[
-          {id:"1",name:"Melamin",price:"2300000"},
-          {id:"2",name:"Laminate",price:"3000000"},
-          {id:"3",name:"Paint",price:"2700000"},
-        ]  
+    { 
+      No:'1',name:"Tủ quần áo", material:[
+        {  id:"1",
+            name:"MDF THƯỜNG", 
+            type:[
+              {id:"1",name:"Melamin",price:"2300000"},
+              {id:"2",name:"Laminate",price:"3000000"},
+              {id:"3",name:"Paint",price:"2700000"},
+            ]  
+        },
+        {   id:"2",
+            name:"MDF KHÔNG THẤM NƯỚC", 
+            type:[
+              {id:"1",name:"Melamin",price:"2700000"},
+              {id:"2",name:"Laminate",price:"3000000"},
+              {id:"3",name:"Paint",price:"2900000"},
+              {id:"3",name:"Acylic",price:"3700000"},
+            ]
+        }]        
     },
-    {   id:"2",
-        name:"MDF KHÔNG THẤM NƯỚC", 
-        type:[
-          {id:"1",name:"Melamin",price:"2700000"},
-          {id:"2",name:"Laminate",price:"3000000"},
-          {id:"3",name:"Paint",price:"2900000"},
-          {id:"3",name:"Acylic",price:"3700000"},
-        ]
+    {
+      No:'2', name:"Tủ bếp trên", material:[
+        {  id:"1",
+            name:"MDF CHỐNG ẨM AN CƯỜNG", 
+            type:[
+              {id:"1",name:"Melamin",price:" 2800000"},
+              {id:"2",name:"Laminate",price:"3500000"},
+              {id:"3",name:"Acylic",price:"3700000"},
+              {id:"4",name:"Paint",price:"3300000"},
+            ]  
+        },
+      ]
     },
-  ]}];
+    {
+      No:'3', name:"Tủ bếp dưới ", material:[
+        {  id:"1",
+            name:"MDF CHỐNG ẨM AN CƯỜNG", 
+            type:[
+              {id:"1",  name:"Melamin", price:" 3200000"},
+              {id:"2",  name:"Laminate",price:"4000000"},
+              {id:"3",  name:"Acylic",  price:"4200000"},
+              {id:"4",  name:"Paint",   price:"3800000"},
+            ]  
+        },
+      ]
+    },
+    {
+      No:'4', name:"Tủ giày ", material:[
+        {  id:"1",
+            name:"MDF THƯỜNG", 
+            type:[
+              {id:"1",name:"Melamin",price:"2200000"},
+              {id:"2",name:"Laminate",price:"2800000"},
+              {id:"3",name:"Paint",price:"2500000"},
+            ]  
+        },
+        {  id:"2",
+            name:"MDF CHỐNG ẨM AN CƯỜNG", 
+            type:[
+              {id:"1",  name:"Melamin", price:" 2400000"},
+              {id:"2",  name:"Laminate",price:" 3000000"},
+              {id:"3",  name:"Acylic",  price:" 3500000"},
+              {id:"4",  name:"Paint",   price:" 2700000"},
+            ]  
+        },
+      ]
+    }
+  ];
 
   materialList:any[][] = new Array();
   typelList:any[][] = new Array();
-  totalItems:number;
+  totalItems:number=0;
 
   constructor(private formBuilder: FormBuilder) {
     
@@ -58,7 +107,14 @@ export class FormMaterialDynamicComponent implements OnInit {
   addItem(): void {
     // this.items = this.orderForm.get('items') as FormArray;
     // this.items.push(this.createItem());
+    
+   
     let item = this.materialForm.get('items') as FormArray;
+    // console.log(item.length)
+    if(item.length >= 8){
+      alert("Quá giới hạn sản phẩm.")
+      return;
+    }
     item.push(this.formBuilder.group({
               product:[''],
               material:[''],
@@ -123,11 +179,8 @@ export class FormMaterialDynamicComponent implements OnInit {
     item.removeAt(index)
   }
 
-  calulatePrice(){
-    console.log("a")
-  }
-
   ngOnInit(): void {
+    this.addItem();
   }
 
 }

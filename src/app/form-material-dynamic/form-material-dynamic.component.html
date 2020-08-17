@@ -1,4 +1,5 @@
-<button (click)="addItem()">Thêm</button>
+<div class="wrapper">
+<div class="form_container">
 <div [formGroup]="materialForm">
   <div formArrayName="items"
     *ngFor="let item of materialFormControls.items?.value; let i = index;">
@@ -37,12 +38,11 @@
               <label class="label">Thành tiền: </label>
               <input type="text" formControlName="total" [attr.disable]="true">
           </div>
-          <!-- <div class="mb-3">
+          <div class="mb-3">
             <label class="label"></label>
             <button class="btn"><i class="fa fa-trash" (click)="del(i)"></i></button>
-          </div> -->
+          </div>
         </div>
-
         <div class="clear"></div>
       </ng-container>
 
@@ -51,15 +51,17 @@
         <input formControlName="price" placeholder="Item price"> -->
 
     <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
-  </div>
-  <!-- <div class="total-items">
-    <label class="label">
-      Tổng báo giá hiện tại:
-    </label>
-    <input type="text" formControlName="totalItems" [attr.disable]="true">
-  </div> -->
+  </div> 
+    <button (click)="addItem()" class="add_btt"><i class="fa fa-plus"></i></button>
+    <div class="total-items">
+      <label class="label">
+        Tổng báo giá hiện tại:
+      </label>
+      <input type="text" formControlName="totalItems" [attr.disable]="true">
+    </div>
 </div>
-
+</div>
+</div>
 <!-- <div>
   <app-form-material></app-form-material>
 </div> -->
